@@ -38,12 +38,12 @@ welcome = """
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <title>Welcome</title>
-  
+  <script>
   $(document).ready(function(){
   $("button").click(function(){
     $("p").hide();
   });
-});
+});</script>
   <style>
   body {
     color: magenta;
