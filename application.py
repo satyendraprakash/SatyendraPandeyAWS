@@ -45,7 +45,7 @@ welcome = """
   });
   
   $("button").click(function(){
-  $.ajax({url: "demo_test.txt", success: function(result){
+  $.ajax({url: "http://open-notify.org/Open-Notify-API/People-In-Space/", success: function(result){
     $("#div1").html(result);
   }});
 });
