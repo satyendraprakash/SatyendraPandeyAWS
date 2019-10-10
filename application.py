@@ -37,14 +37,36 @@ welcome = """
   -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+
   <title>Welcome</title>
   <script>
   $(document).ready(function(){
 
-	 
-	  $.ajax({url: "http://open-notify.org/Open-Notify-API/People-In-Space/", success: function(result){
-		$("#div1").html(result);
+	
+	  $.ajax({url: "http://api.open-notify.org/astros.json", success: function(data){
+		//$("#div1").html(result);
+		
+		var $thead = $('#tableId').find('thead');
+var tr = $("<tr>");
+$thead.append(tr);
+$.each(data[0], function(name, value) {
+
+    $(tr).append('<th>' + name + '</th>');
+});
+
+$('#tableId').DataTable({
+    data: data,
+});
+
+
 	  }});
+	  
+	  
+
 	 
 });</script>
   <style>
@@ -120,7 +142,13 @@ welcome = """
     
 	<div id="div1">  </div>
   
-  
+  <table id="tableId" class="table table-condensed responsive">
+    <thead>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
 
 
 
