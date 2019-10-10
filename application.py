@@ -37,9 +37,9 @@ welcome = """
   -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"/>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
 
 
   <title>Welcome</title>
@@ -48,18 +48,24 @@ welcome = """
 
 	
 	  $.ajax({url: "http://api.open-notify.org/astros.json", success: function(data){
-		//$("#div1").html(result);
+		console.log(data);
 		
-		var $thead = $('#tableId').find('thead');
+var $thead = $('#tableId').find('thead');
 var tr = $("<tr>");
 $thead.append(tr);
+var columns = [];
 $.each(data[0], function(name, value) {
-
-    $(tr).append('<th>' + name + '</th>');
+  var column = {
+    "data": name,
+    "title":name
+  };
+  columns.push(column);
 });
 
+
 $('#tableId').DataTable({
-    data: data,
+  data: data,
+  columns: columns
 });
 
 
