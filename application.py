@@ -45,35 +45,25 @@ welcome = """
   <title>Welcome</title>
   <script>
   $(document).ready(function(){
-
+ $("#tableId").dataTable().fnClearTable();
+		 $("#tableId").dataTable().fnDestroy();
 	
-	  $.ajax({url: "http://api.open-notify.org/astros.json", success: function(data){
+	  $.ajax({
+			url: "http://api.open-notify.org/astros.json", 
+	   type: 'GET',
+		dataType: 'json',
+		cache: false,
+		async: true,
+		//contentType: "application/json",
+		success: function(data) {
 		console.log(data);
-		
-var $thead = $('#tableId').find('thead');
-var tr = $("<tr>");
-$thead.append(tr);
-var columns = [];
-$.each(data[0], function(name, value) {
-  var column = {
-    "data": name,
-    "title":name
-  };
-  columns.push(column);
+		$.each( data.people,function(key1,value){		
+			$('#tableId').append('<tr><td>'+value.name+'</td><td>'+value.craft+'</td> </tr>')
+		});	
+		$('#tableId').DataTable({ width: '100%'}
+		);
+		}
 });
-
-
-$('#tableId').DataTable({
-  data: data,
-  columns: columns
-});
-
-
-	  }});
-	  
-	  
-
-	 
 });</script>
   <style>
   body {
@@ -146,16 +136,19 @@ $('#tableId').DataTable({
 <body id="sample">
  
     
-	<div id="div1">  </div>
-  
-  <table id="tableId" class="table table-condensed responsive">
-    <thead>
-    </thead>
-    <tbody>
+  <div id="div1" width="300px !important;"> 
+  <table id="tableId" class="table table-condensed responsive"  width="300px !important;">
+     <thead>
+            <tr>
+                <th>Name</th>
+                <th>Craft</th>
+            </tr>
+        </thead>
+    
 
     </tbody>
 </table>
-
+</div>
 
 
 </body>
