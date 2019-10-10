@@ -40,9 +40,7 @@ welcome = """
   <title>Welcome</title>
   <script>
   $(document).ready(function(){
-  $("button").click(function(){
-    $("p").hide();
-  });
+  
   
   $("button").click(function(){
   $.ajax({url: "http://open-notify.org/Open-Notify-API/People-In-Space/", success: function(result){
@@ -121,8 +119,7 @@ welcome = """
 <body id="sample">
  
     
-	<div id="div1">
-  </div>
+	<div id="div1">  </div>
   
   
 
