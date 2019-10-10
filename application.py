@@ -43,6 +43,12 @@ welcome = """
   $("button").click(function(){
     $("p").hide();
   });
+  
+  $("button").click(function(){
+  $.ajax({url: "demo_test.txt", success: function(result){
+    $("#div1").html(result);
+  }});
+});
 });</script>
   <style>
   body {
@@ -142,6 +148,7 @@ welcome = """
     <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/">AWS Elastic Beanstalk overview</a></li>
     <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/index.html?concepts.html">AWS Elastic Beanstalk concepts</a></li>
     </ul>
+	<div id="div1">
   </div>
   
   
