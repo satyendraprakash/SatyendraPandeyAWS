@@ -40,13 +40,12 @@ welcome = """
   <title>Welcome</title>
   <script>
   $(document).ready(function(){
-  
-  
-  $("button").click(function(){
-  $.ajax({url: "http://open-notify.org/Open-Notify-API/People-In-Space/", success: function(result){
-    $("#div1").html(result);
-  }});
-});
+
+	 
+	  $.ajax({url: "http://open-notify.org/Open-Notify-API/People-In-Space/", success: function(result){
+		$("#div1").html(result);
+	  }});
+	 
 });</script>
   <style>
   body {
