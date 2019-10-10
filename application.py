@@ -116,9 +116,16 @@ welcome = """
   <div class="textColumn">
     <h1>Congratulations Satyendra Jai Sri Ram Pandey Weldone!</h1>
     <p>Your Docker Container is now running in Elastic Beanstalk on your own dedicated environment in the AWS Cloud.</p>
+	
   </div>
   
   <div class="linksColumn"> 
+  <h2>This is a heading</h2>
+
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+
+<button>Click me to hide paragraphs</button>
     <h2>Video Tutorials</h2>
     <ul>
     <li>YouTube: <a href="https://www.youtube.com/watch?v=lBu7Ov3Rt-M&feature=youtu.be">Run a Docker Container from the Docker Registry</a></li>
@@ -139,12 +146,7 @@ welcome = """
   
   
 
-<h2>This is a heading</h2>
 
-<p>This is a paragraph.</p>
-<p>This is another paragraph.</p>
-
-<button>Click me to hide paragraphs</button>
 
 </body>
 </html>
