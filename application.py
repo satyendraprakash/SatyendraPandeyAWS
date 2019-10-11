@@ -44,7 +44,12 @@ welcome = """
 
   <title>Welcome</title>
   <script>
+    var lat ='';
   
+  var lng ='';
+  
+   var map, infoWindow;
+   
     $(document).ready(function(){
 	$("#tableId").dataTable().fnClearTable();
 		 $("#tableId").dataTable().fnDestroy();
@@ -66,12 +71,30 @@ welcome = """
 		}
 	});
 	
-		  $.ajax({
+ $.ajax({
 			url: "http://api.open-notify.org/iss-now.json", 
 				dataType: 'json',
 				success: function(data) {
-					console.log(data);
-					 
+					console.log("Success----->"+data);
+					 lat = data.iss_position.latitude;
+					 lng =   data.iss_position.longitude;
+					
+					 var iNumlat = parseFloat(lat);
+					 var iNumlng = parseFloat(lng);
+					 var latlng = new google.maps.LatLng(iNumlat,iNumlng);
+					 map = new google.maps.Map(document.getElementById('somecomponent'), {
+					center: latlng,
+					zoom: 6
+					});	
+					
+						var  marker = new google.maps.Marker({
+								position: latlng,
+								map: map,
+								draggable: true
+						});	     
+					marker.setVisible(true);
+	 console.log("done"+lat + '<-->'+ lng)
+	
 				
 				},
 				error: function (error) {
@@ -79,13 +102,31 @@ welcome = """
 				}
 	});
 	
+ 
+	
   
 	  
 	  
 	  
 
 	
-});</script>
+});
+
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('somecomponent'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+        
+}
+	  
+
+
+
+
+
+</script>
   <style>
   body {
     color: #1A0DAB;
@@ -176,6 +217,10 @@ welcome = """
 
 </body>
 </html>
+
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPu_mcAMtQA_Rnr4bKKPo9kV6ZEPY-kBI&callback=initMap">
+    </script>
 """
 
 def application(environ, start_response):
