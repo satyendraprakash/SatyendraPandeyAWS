@@ -36,7 +36,7 @@ welcome = """
     or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
   -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"/>
 
@@ -44,8 +44,7 @@ welcome = """
 
   <title>Welcome</title>
   <script>
-  $(document).ready(function(){
- $("#tableId").dataTable().fnClearTable();
+	$("#tableId").dataTable().fnClearTable();
 		 $("#tableId").dataTable().fnDestroy();
 	
 	  $.ajax({
@@ -60,14 +59,34 @@ welcome = """
 		$.each( data.people,function(key1,value){		
 			$('#tableId').append('<tr><td>'+value.name+'</td><td>'+value.craft+'</td> </tr>')
 		});	
-		$('#tableId').DataTable({ width: '100%'}
+		$('#tableId').DataTable({ width: '30%'}
 		);
 		}
-});
+	});
+	
+		  $.ajax({
+			url: "http://api.open-notify.org/iss-now.json", 
+				dataType: 'json',
+				success: function(data) {
+					console.log(data);
+					 
+				
+				},
+				error: function (error) {
+					console.log('error; ' + JSON.stringify(error));
+				}
+	});
+	
+  
+	  
+	  
+	  
+
+	
 });</script>
   <style>
   body {
-    color: magenta;
+    color: #1A0DAB;
     background-color: #E0E0E0;
     font-family: Arial, sans-serif;
     font-size:14px;
@@ -136,20 +155,22 @@ welcome = """
 <body id="sample">
  
     
-  <div id="div1" width="300px !important;"> 
-  <table id="tableId" class="table table-condensed responsive"  width="300px !important;">
+  <div id="div1"   style="border:2px solid magenta;width:fit-content;"> 
+   <p style="font-size:22px;"> How Many People Are In Space Right Now  </p>
+  <table id="tableId" class="table table-condensed responsive" >
      <thead>
             <tr>
                 <th>Name</th>
                 <th>Craft</th>
             </tr>
         </thead>
-    
-
     </tbody>
 </table>
 </div>
-
+  <div id="div2"   style="border:2px solid magenta;width:fit-content;"> 
+   <p style="font-size:22px;"> Current Location  </p>
+  <div id="somecomponent" style="width: 500px; height: 400px;"></div>
+</div>
 
 </body>
 </html>
