@@ -84,7 +84,7 @@ welcome = """
 					 var latlng = new google.maps.LatLng(iNumlat,iNumlng);
 					 map = new google.maps.Map(document.getElementById('somecomponent'), {
 					center: latlng,
-					zoom: 6
+					zoom: 1
 					});	
 					
 						var  marker = new google.maps.Marker({
@@ -116,7 +116,7 @@ welcome = """
       function initMap() {
         map = new google.maps.Map(document.getElementById('somecomponent'), {
           center: {lat: -34.397, lng: 150.644},
-          zoom: 6
+          zoom: 1
         });
         
 }
@@ -192,6 +192,9 @@ welcome = """
   }
   li {
     margin: 1em 0em;
+  }
+    #tableId_wrapper{
+  width :500px;
   }
   </style>
 </head>
