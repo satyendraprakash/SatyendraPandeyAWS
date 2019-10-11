@@ -44,6 +44,8 @@ welcome = """
 
   <title>Welcome</title>
   <script>
+  
+    $(document).ready(function(){
 	$("#tableId").dataTable().fnClearTable();
 		 $("#tableId").dataTable().fnDestroy();
 	
