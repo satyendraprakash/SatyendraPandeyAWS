@@ -220,7 +220,9 @@ welcome = """
 
 </body>
 </html>
-
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPu_mcAMtQA_Rnr4bKKPo9kV6ZEPY-kBI&callback=initMap">
+    </script>
 
 """
 
