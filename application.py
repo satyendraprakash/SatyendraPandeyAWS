@@ -53,19 +53,6 @@ welcome = """
     $(document).ready(function(){
 	$("#tableId").dataTable().fnClearTable();
 		 $("#tableId").dataTable().fnDestroy();
-	  $.ajax({
-			url: "https://newsapi.org/s/google-news-in-api", 
-				dataType: 'json',
-				success: function(data) {
-					console.log("Success----->"+data);
-					 
-	
-				
-				},
-				error: function (error) {
-					console.log('error; ' + JSON.stringify(error));
-				}
-	});
 	
 	  $.ajax({
 			url: "http://api.open-notify.org/astros.json", 
@@ -119,6 +106,31 @@ welcome = """
 	
   
 	  
+ 
+ 
+ $.getJSON('https://newsapi.org/v2/everything?q=bitcoin&apiKey=37bda5b049e24780bfda4f38a4f50987', (response)=> {
+      console.log('HELLO INSIDE response')
+     // console.log('response', response)
+	  
+	 // console.log( response.articles  + ": " + response.articles.length );
+$.each( response.articles, function( key, value ) {
+ console.log( JSON.stringify(key) + ": " + JSON.stringify(value)  );
+   
+  $('#newsTab').append('<tr> <td style="text-align:left;"><a href="'+value.url +'" target="_blank">  <img src='+value.urlToImage+' width="100" height="70"  style="vertical-align:middle">'+value.content+'</a> </td>  </tr> ')
+  
+});
+  
+  
+    }).done(function() {
+    console.log( "second success" );
+  })
+  .fail(function() {
+    console.log( "error" );
+  })
+  .always(function() {
+    console.log( "complete" );
+  });
+	
 	  
 	  
 
@@ -230,13 +242,13 @@ welcome = """
    <p style="font-size:22px;"> Current Location  </p>
   <div id="somecomponent" style="width: 500px; height: 400px;"></div>
 </div>
-
+<table id="newsTab" border=1 style="border:2px solid magenta;display:inline-block;vertical-align:top;width:50%;cellspacing:10px;"></table>
 </body>
 </html>
+
  <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPu_mcAMtQA_Rnr4bKKPo9kV6ZEPY-kBI&callback=initMap">
     </script>
-
 """
 
 def application(environ, start_response):
