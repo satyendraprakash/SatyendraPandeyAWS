@@ -53,6 +53,19 @@ welcome = """
     $(document).ready(function(){
 	$("#tableId").dataTable().fnClearTable();
 		 $("#tableId").dataTable().fnDestroy();
+	  $.ajax({
+			url: "https://newsapi.org/s/google-news-in-api", 
+				dataType: 'json',
+				success: function(data) {
+					console.log("Success----->"+data);
+					 
+	
+				
+				},
+				error: function (error) {
+					console.log('error; ' + JSON.stringify(error));
+				}
+	});
 	
 	  $.ajax({
 			url: "http://api.open-notify.org/astros.json", 
