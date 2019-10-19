@@ -39,7 +39,8 @@ welcome = """
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"/>
-
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
   <title>Welcome</title>
@@ -108,24 +109,25 @@ welcome = """
 	  
  
  
-
  $.getJSON('https://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=37bda5b049e24780bfda4f38a4f50987', (response)=> {
       console.log('HELLO INSIDE response')
      // console.log('response', response)
 	  
 	 // console.log( response.articles  + ": " + response.articles.length );
-	 var  desc="";
+	  
 $.each( response.articles, function( key, value ) {
  console.log( JSON.stringify(key) + ": " + JSON.stringify(value)  );
- if(desc == ""){
-   desc = value.content;
-   }
-  $('#newsTab').append('<tr> <td style="text-align:left;display: flex;  align-items: center;"><a href="'+value.url +'" target="_blank" style="float:left">  <img src='+value.urlToImage+' width="100" height="70"  style="vertical-align:middle;margin-right:20px;">'+value.title+'</a> </td>  </tr> ')
-  
+ 
+  $('#TabsUL').append(' <li><a href="#tab'+key +'" >  <img src='+value.urlToImage+' width="100" height="70"  style="vertical-align:middle;margin-right:20px;">'+value.title+'</a> </li> ')
+   $('#tabs').append('<div id="tab'+key+'"><h2>'+ value.description + '</h2> <p>'+ value.content+'</p> <p> Published At'+value.publishedAt+'</p></div>');
+   
 });
-   $('#ContentDesc').text(desc);
+  
+  
   
     }).done(function() {
+	 $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+    $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
     console.log( "second success" );
   })
   .fail(function() {
@@ -161,6 +163,14 @@ $.each( response.articles, function( key, value ) {
 
 </script>
   <style>
+     .ui-tabs-vertical { width: 55em; }
+  .ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 12em; }
+  .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
+  .ui-tabs-vertical .ui-tabs-nav li a { display:block; }
+  .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; }
+  .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
+  
+  
   body {
     color: #1A0DAB;
     background-color: #E0E0E0;
@@ -251,14 +261,13 @@ $.each( response.articles, function( key, value ) {
   <div id="somecomponent" style="width: 500px; height: 400px;"></div>
 </div>
 
+ <div id="tabs">
+  <ul id="TabsUL">
+   
+  </ul>
+ 
 
-<div style="postion:relative;width:100%">
-<div style="float:left;width:60%">
-
-<table id="newsTab" border=1 style="postion:relative;border:2px solid magenta;display:inline-block;vertical-align:top;width:50%;cellspacing:10px;"></table>
-</div>
-<div style="float:right;position:relative" id="ContentDesc"></div>
-</div>
+  </div>
 
 
 </body>
