@@ -108,18 +108,22 @@ welcome = """
 	  
  
  
+
  $.getJSON('https://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=37bda5b049e24780bfda4f38a4f50987', (response)=> {
       console.log('HELLO INSIDE response')
      // console.log('response', response)
 	  
 	 // console.log( response.articles  + ": " + response.articles.length );
+	 var  desc="";
 $.each( response.articles, function( key, value ) {
  console.log( JSON.stringify(key) + ": " + JSON.stringify(value)  );
-   
-  $('#newsTab').append('<tr> <td style="text-align:left;"><a href="'+value.url +'" target="_blank">  <img src='+value.urlToImage+' width="100" height="70"  style="vertical-align:middle">'+value.content+'</a> </td>  </tr> ')
+ if(desc == ""){
+   desc = value.content;
+   }
+  $('#newsTab').append('<tr> <td style="text-align:left;display: flex;  align-items: center;"><a href="'+value.url +'" target="_blank" style="float:left">  <img src='+value.urlToImage+' width="100" height="70"  style="vertical-align:middle;margin-right:20px;">'+value.title+'</a> </td>  </tr> ')
   
 });
-  
+   $('#ContentDesc').text(desc);
   
     }).done(function() {
     console.log( "second success" );
@@ -130,6 +134,10 @@ $.each( response.articles, function( key, value ) {
   .always(function() {
     console.log( "complete" );
   });
+	
+	
+	
+ });
 	
 	  
 	  
@@ -242,7 +250,17 @@ $.each( response.articles, function( key, value ) {
    <p style="font-size:22px;"> Current Location  </p>
   <div id="somecomponent" style="width: 500px; height: 400px;"></div>
 </div>
-<table id="newsTab" border=1 style="border:2px solid magenta;display:inline-block;vertical-align:top;width:50%;cellspacing:10px;"></table>
+
+
+<div style="postion:relative;width:100%">
+<div style="float:left;width:60%">
+
+<table id="newsTab" border=1 style="postion:relative;border:2px solid magenta;display:inline-block;vertical-align:top;width:50%;cellspacing:10px;"></table>
+</div>
+<div style="float:right;position:relative" id="ContentDesc"></div>
+</div>
+
+
 </body>
 </html>
 
