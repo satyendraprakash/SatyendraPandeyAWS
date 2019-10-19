@@ -143,7 +143,7 @@ $.each( response.articles, function( key, value ) {
 	  
 
 	
-});
+ 
 
 
       function initMap() {
