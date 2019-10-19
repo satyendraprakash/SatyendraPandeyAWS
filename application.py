@@ -108,7 +108,7 @@ welcome = """
 	  
  
  
- $.getJSON('https://newsapi.org/v2/everything?q=bitcoin&apiKey=37bda5b049e24780bfda4f38a4f50987', (response)=> {
+ $.getJSON('https://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=37bda5b049e24780bfda4f38a4f50987', (response)=> {
       console.log('HELLO INSIDE response')
      // console.log('response', response)
 	  
