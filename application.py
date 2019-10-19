@@ -169,7 +169,9 @@ $.each( response.articles, function( key, value ) {
   .ui-tabs-vertical .ui-tabs-nav li a { display:block; }
   .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; }
   .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
-  
+    #TabsUL {
+  display:inline-table;
+  }
   
   body {
     color: #1A0DAB;
